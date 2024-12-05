@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addContact, selectContacts } from "../../redux/contactsSlice";
+import { addContact } from "../../redux/contactsOps";
+import { selectContacts } from "../../redux/contactsSlice";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import s from "./ContactForm.module.css";
@@ -21,14 +22,7 @@ const ContactForm = () => {
       return;
     }
 
-    dispatch(
-      addContact({
-        id: `id-${Date.now()}`,
-        name: phonename,
-        number: phonenumber,
-      })
-    );
-
+    dispatch(addContact({ name: phonename, number: phonenumber }));
     resetForm();
   };
 
