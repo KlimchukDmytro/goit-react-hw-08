@@ -1,0 +1,13 @@
+.div {
+  position: fixed;
+  top: 0;
+  background-color: #646161;
+  height: 50px;
+  width: 100%;
+  
+}
+.nav{
+  color: #ffffff;
+  margin: 10px;
+  font-size: x-large;
+}
