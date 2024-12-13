@@ -2,17 +2,28 @@ import { Field, Formik, Form } from "formik";
 import s from "./RegistrationForm.module.css";
 import { useDispatch } from "react-redux";
 import { registration } from "../../redux/auth/operation";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleSubmit = (values, options) => {
-    dispatch(registration(values));
-    options.resetForm();
+    dispatch(registration(values))
+      .unwrap()
+      .then(res => {
+        toast(`Вітаю в ваших контактах ${res.user.name}!`);
+        navigate("/contacts");
+      })
+      .catch(() => {
+      toast.error(`Щось пішло не так(((, спробуйте ще...`)
+    });
+    options.resetForm()
   };
   const initialValues = {
     name: "",
     email: "",
-    password: ""
+    password: "",
   }
   return (
     <div className={s.wrapper}>

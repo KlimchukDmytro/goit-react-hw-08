@@ -17,7 +17,7 @@ const contactsSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchContacts.fulfilled, (state, action) => {
+      .addCase(logout.fulfilled, (state, action) => {
         state.loading = false;
         state.items = action.payload;
       })
@@ -57,6 +57,7 @@ export const selectLoading = (state) => state.contacts.loading;
 export const selectError = (state) => state.contacts.error;
 
 import { selectNameFilter } from "./filtersSlice";
+import { logout } from "./auth/operation";
 
 export const selectFilteredContacts = createSelector(
   [selectContacts, selectNameFilter],
