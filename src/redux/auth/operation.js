@@ -42,9 +42,28 @@ export const login = createAsyncThunk(
 
 export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
-      await api.post("/users/logout");
-      clearAuthHeader();
+    await api.post("/users/logout");
+    clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
+
+export const refreshUser = createAsyncThunk(
+  "auth/refresh",
+  async (_, thunkAPI) => {
+    const saveToken = thunkAPI.getState().auth.token;
+    
+    if (!saveToken) {
+    return thunkAPI.rejectWithValue("")
+  }
+
+    try {
+      setAuthHeader(saveToken);
+      const { data } = await api.get("/users/me");
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
