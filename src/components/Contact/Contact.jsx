@@ -10,6 +10,7 @@ function Contact({ contact }) {
   };
   return (
     <>
+      
       <div className={s.item}>
         <p className={s.text_name}>
           <FaUser className={s.icon} />

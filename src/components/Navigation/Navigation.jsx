@@ -5,7 +5,6 @@ import { NavLink } from "react-router-dom";
 
 export const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-
   return (
     <nav className={s.nav}>
       <ul className={s.list}>
