@@ -1,13 +1,9 @@
 import LoginForm from "../../components/LoginForm/LoginForm";
 
-const LoginPage = () => {
+export default function LoginPage() {
   return (
     <div>
       <LoginForm />
     </div>
   );
-};
-
-export default LoginPage;
-
-
+}

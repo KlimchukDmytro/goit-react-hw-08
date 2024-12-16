@@ -1,13 +1,11 @@
-import { Outlet } from "react-router-dom";
-import Header from "./Header/Header";
+import { Suspense } from "react";
+import { AppBar } from "./AppBar/AppBar";
 
-const Layout = () => {
+export const Layout = ({ children }) => {
   return (
     <div>
-      <Header />
-      <Outlet />
+      <AppBar />
+      <Suspense fallback={null}>{children}</Suspense>
     </div>
   );
 };
-
-export default Layout;

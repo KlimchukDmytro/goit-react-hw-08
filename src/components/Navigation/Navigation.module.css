@@ -1,0 +1,15 @@
+
+
+.list{
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
+
+.item{
+  margin-right: 30px;
+}
+
+.text {
+  color: #ffffff;
+}

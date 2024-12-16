@@ -1,19 +1,25 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { fetchContacts } from "../redux/contactsOps";
-import { Route, Routes } from "react-router-dom";
-import Layout from "./Layout";
+import { useDispatch, useSelector } from "react-redux";
+import { refreshUser } from "../redux/auth/operation";
+import { selectIsRefreshing } from "../redux/auth/selectors";
+import { Routes, Route } from "react-router-dom";
+import { Layout } from "./Layout";
 import HomePage from "../pages/HomePage/HomePage";
 import ContactsPage from "../pages/ContactsPage/ContactsPage";
-import RegistrationPage from "../pages/RegistrationPage/RegistrationPage";
 import LoginPage from "../pages/LoginPage/LoginPage";
+import RegisterPage from "../pages/RegistrationPage/RegistrationPage";
 
-const App = () => {
+export const App = () => {
   const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
+
+  if (isRefreshing) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <Routes>
@@ -21,10 +27,8 @@ const App = () => {
         <Route index element={<HomePage />} />
         <Route path="contacts" element={<ContactsPage />} />
       </Route>
-      <Route path="registration" element={<RegistrationPage />} />
       <Route path="login" element={<LoginPage />} />
+      <Route path="register" element={<RegisterPage />} />
     </Routes>
   );
 };
-
-export default App;
