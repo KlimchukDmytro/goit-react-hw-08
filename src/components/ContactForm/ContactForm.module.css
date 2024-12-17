@@ -1,4 +1,8 @@
-/* .form {
+.wraper{
+  margin-top: 20px;
+}
+
+.form {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -35,4 +39,4 @@
 .error {
   color: red;
   font-size: 12px;
-} */
+}
