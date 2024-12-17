@@ -1,7 +1,7 @@
 // import s from "./LoginForm.module.css";
 import { Field, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
-import { login } from "../../redux/auth/operation";
+import { login } from "../../redux/auth/operations";
 import { nanoid } from "nanoid";
 
 const initialValues = {
