@@ -10,14 +10,15 @@ function Contact({ contact }) {
   };
   return (
     <>
-      
       <div className={s.item}>
         <p className={s.text_name}>
           <FaUser className={s.icon} />
-          {contact.name}:</p>
+          {contact.name}:
+        </p>
         <p className={s.text_number}>
           <FaPhone className={s.icon} />
-          {contact.number}</p>
+          {contact.number}
+        </p>
       </div>
       <button type="button" className={s.btn} onClick={handleClick}>
         Delete
