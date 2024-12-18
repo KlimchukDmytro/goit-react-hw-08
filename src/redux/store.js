@@ -17,7 +17,7 @@ import { authReducer } from "./auth/slice";
 const authPersistConfig = {
   key: "auth",
   storage,
-  whitelist: ["token"], // Токен зберігається у persistent state
+  whitelist: ["token"], 
 };
 
 export const store = configureStore({

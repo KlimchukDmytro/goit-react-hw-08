@@ -22,7 +22,7 @@ const slice = createSlice({
       .addCase(addContact.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items.push(action.payload); // Додаємо новий контакт
+        state.items.push(action.payload); 
       })
       .addCase(addContact.rejected, handleRejected)
       .addCase(deleteContact.pending, handlePending)
