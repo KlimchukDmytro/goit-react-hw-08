@@ -1,34 +1,37 @@
-
 import { Field, Form, Formik } from "formik";
-import { nanoid } from "nanoid";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { register } from "../../redux/auth/operations";
+
 const initialValues = {
   name: "",
   email: "",
   password: "",
 };
+
 function RegisterForm() {
   const dispatch = useDispatch();
-  const nameFieldId = nanoid();
-  const emailFieldId = nanoid();
-  const passwordFieldId = nanoid();
-  const handleSubmit = (values, actions) => {
-    dispatch(register(values));
+  const navigate = useNavigate();
+
+  const handleSubmit = async (values, actions) => {
+    await dispatch(register(values));
+    navigate("/contacts"); 
     actions.resetForm();
   };
+
   return (
     <Formik onSubmit={handleSubmit} initialValues={initialValues}>
       <Form>
-        <label htmlFor={nameFieldId}>Username</label>
-        <Field type="text" name="name" id={nameFieldId} />
-        <label htmlFor={emailFieldId}>Email</label>
-        <Field type="email" name="email" id={emailFieldId} />
-        <label htmlFor={passwordFieldId}>Password</label>
-        <Field type="password" name="password" is={passwordFieldId} />
+        <label htmlFor="name">Username</label>
+        <Field type="text" name="name" id="name" />
+        <label htmlFor="email">Email</label>
+        <Field type="email" name="email" id="email" />
+        <label htmlFor="password">Password</label>
+        <Field type="password" name="password" id="password" />
         <button type="submit">Register</button>
       </Form>
     </Formik>
   );
 }
+
 export default RegisterForm;
