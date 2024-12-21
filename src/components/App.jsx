@@ -8,6 +8,8 @@ import HomePage from "../pages/HomePage/HomePage";
 import ContactsPage from "../pages/ContactsPage/ContactsPage";
 import LoginPage from "../pages/LoginPage/LoginPage";
 import RegisterPage from "../pages/RegistrationPage/RegistrationPage";
+import { PrivateRoute } from "./PrivateRoute";
+import { RestrictedRoute } from "./RestrictedRoute";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -25,10 +27,28 @@ export const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
-        <Route path="/contacts" element={<ContactsPage />} />
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute component={<ContactsPage />} redirectTo="/login" />
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute component={<LoginPage />} redirectTo="/contacts" />
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <RestrictedRoute
+              component={<RegisterPage />}
+              redirectTo="/contacts"
+            />
+          }
+        />
       </Route>
-      <Route path="login" element={<LoginPage />} />
-      <Route path="register" element={<RegisterPage />} />
     </Routes>
   );
 };
